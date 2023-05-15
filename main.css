@@ -39,23 +39,32 @@
 	align-items: center;
 }
 
-.calculator .buttons .buttons-numbers button {
+button {
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;
 	border: none;
-	background-color: #424448;
 	color: #ffffff;
+	font-size: 24px;
+}
+
+.calculator .buttons .buttons-numbers button {
+	background-color: #424448;
 }
 
 .calculator .buttons .buttons-numbers button:hover {
 	background-color: #96989c;
 }
 
+.calculator .buttons .buttons-numbers button:active {
+	border: 2px solid #424448;
+}
+
 .calculator .buttons .buttons-numbers #zero {
 	width: 66%;
 	border-radius: 50px;
 }
+
 .calculator .buttons .buttons-numbers #clear {
 	width: 100%;
 	border-radius: 50px;
@@ -64,6 +73,10 @@
 
 .calculator .buttons .buttons-numbers #clear:hover {
 	background-color: #434549;
+}
+
+.calculator .buttons .buttons-numbers #clear:active {
+	border: 2px solid #2c2d30;
 }
 
 .calculator .buttons .buttons-operators {
@@ -75,16 +88,13 @@
 }
 
 .calculator .buttons .buttons-operators button {
-	border: none;
-	border-radius: 50%;
-	width: 60px;
-	height: 60px;
 	background-color: #3581AC;
-	color: #ffffff;
 }
 
 .calculator .buttons .buttons-operators button:hover {
 	background-color: #81a7bd;
 }
 
-
+.calculator .buttons .buttons-operators button:active {
+	border: 2px solid #3581AC;
+}
