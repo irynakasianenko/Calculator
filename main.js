@@ -60,3 +60,24 @@ function getResult(operators, operand) {
 	display.innerText = result;
 	return result;
 }
+
+document.addEventListener('keydown', function (e) {
+	e.preventDefault();
+	if (!isNaN(Number(e.key))) {
+		display.innerText += e.key;
+		operator += e.key;
+	}
+	if (e.key == '+' || e.key == '-' || e.key == '*' || e.key == '/') {
+		display.innerText += e.key;
+		operand += e.key;
+		operators.push(Number(operator));
+		operator = '';
+	}
+	if (e.key == '=' || e.key == 'Enter') {
+		getResult(operators, operand);
+		operators = [];
+		operator = result;
+		operand = '';
+	}
+})
+
