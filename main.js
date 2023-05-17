@@ -62,7 +62,6 @@ function getResult(operators, operand) {
 }
 
 document.addEventListener('keydown', function (e) {
-	e.preventDefault();
 	if (!isNaN(Number(e.key))) {
 		display.innerText += e.key;
 		operator += e.key;
@@ -74,6 +73,7 @@ document.addEventListener('keydown', function (e) {
 		operator = '';
 	}
 	if (e.key == '=' || e.key == 'Enter') {
+		operators.push(Number(operator));
 		getResult(operators, operand);
 		operators = [];
 		operator = result;
