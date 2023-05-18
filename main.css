@@ -1,16 +1,24 @@
+@font-face {
+	font-family:'Exo 2', sans-serif;
+	src: url(/fonts/Exo2-VariableFont_wght.ttf);
+}
+
 * {
 	margin: 0;
 	box-sizing: border-box;
+	font-family: 'Exo 2', sans-serif;
 }
 
 .container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background: linear-gradient(to bottom, #7d7e7d 0%,#0e0e0e 100%);
+	height: 100vh;
 }
 
 .calculator {	
-	margin-top: 5%;
+	margin-top: 30px;
 	width: 320px;
 	height: 600px;
 	background-color:#1B1E22;
@@ -23,6 +31,7 @@
 	background-color:#1B1E22;
 	color: #ffffff;
 	font-size: 48px;
+	padding: 60px 15px;
 }
 
 .calculator .buttons {
