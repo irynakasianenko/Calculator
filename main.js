@@ -32,6 +32,9 @@ function calculate(e) {
 		result = '';
 		operator = '';
 	}
+	if (e.target.classList.contains('delete')) {
+		deleteLast();
+	}
 }
 
 function getResult(operators, operand) {
@@ -54,7 +57,6 @@ function getResult(operators, operand) {
 }
 
 document.addEventListener('keydown', function (e) {
-	console.log(e.key)
 	if (!isNaN(Number(e.key))) {
 		display.innerText += e.key;
 		operator += e.key;
@@ -65,13 +67,19 @@ document.addEventListener('keydown', function (e) {
 		operators.push(Number(operator));
 		operator = '';
 	}
-	if (e.key == '=' || e.key == 'Enter') {
-		console.log(operators, operator)
+	if (e.key == '=') {
 		operators.push(Number(operator));
 		getResult(operators, operand);
 		operators = [];
 		operator = result;
 		operand = '';
 	}
+	if (e.key == 'Backspace') {
+		deleteLast();
+	}
 })
 
+function deleteLast() {
+	display.innerText = display.innerText.slice(0, -1);
+	operator = operator.slice(0, -1);
+}

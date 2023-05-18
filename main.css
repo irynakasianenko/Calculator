@@ -69,24 +69,31 @@ button {
 	border: 2px solid #424448;
 }
 
+.calculator .buttons .buttons-numbers .top {
+	background-color: #64676c;
+}
+
+.calculator .buttons .buttons-numbers .top:hover {
+	background-color: #434549;
+}
+
+.calculator .buttons .buttons-numbers .top:active {
+	border: 2px solid #2c2d30;
+}
+
 .calculator .buttons .buttons-numbers #zero {
 	width: 66%;
 	border-radius: 50px;
 }
 
 .calculator .buttons .buttons-numbers #clear {
-	width: 100%;
+	width: 66%;
 	border-radius: 50px;
-	background-color: #64676c;
 }
 
-.calculator .buttons .buttons-numbers #clear:hover {
-	background-color: #434549;
-}
 
-.calculator .buttons .buttons-numbers #clear:active {
-	border: 2px solid #2c2d30;
-}
+
+
 
 .calculator .buttons .buttons-operators {
 	display: flex;
