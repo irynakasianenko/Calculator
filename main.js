@@ -1,45 +1,37 @@
-let buttonsOperands = Array.from(document.querySelector('.buttons-numbers').children);
+let buttons = document.querySelector('.buttons');
 let display = document.querySelector('#display');
-let clear = document.querySelector('#clear');
-let equals = document.querySelector('#equals');
-let buttonsOperators = Array.from(document.querySelector('.buttons-operators').children);
 
 let operator = '';
 let operand = '';
 let operators = [];
 let result;
 
-buttonsOperands.forEach((btn) => {
-	btn.addEventListener('click', function () {
-		display.innerText += btn.value;
-		operator += btn.value;
-	})
-})
+buttons.addEventListener('click', calculate);
 
-buttonsOperators.forEach((btn) => {
-	btn.addEventListener('click', function () {
-		display.innerText += btn.value;
-		operand += btn.value;
+function calculate(e) {
+	if (e.target.parentElement.classList.contains('buttons-numbers')) {
+		display.innerText += e.target.value;
+		operator += e.target.value;
+	}
+	if (e.target.parentElement.classList.contains('buttons-operators')) {
+		display.innerText += e.target.value;
+		operand += e.target.value;
 		operators.push(Number(operator));
 		operator = '';
-	})
-})
-
-equals.addEventListener('click', function () {
-	getResult(operators, operand);
-	operators = [];
-	operator = result;
-	operand = '';
-})
-
-clear.addEventListener('click', clearCalculator);
-
-function clearCalculator() {
-	display.innerText = '';
-	operators = [];
-	operand = '';
-	result = '';
-	operator = '';
+	}
+	if (e.target.classList.contains('equals')) {
+		getResult(operators, operand);
+		operators = [];
+		operator = result;
+		operand = '';
+	}
+	if (e.target.classList.contains('clear')) {
+		display.innerText = '';
+		operators = [];
+		operand = '';
+		result = '';
+		operator = '';
+	}
 }
 
 function getResult(operators, operand) {
@@ -62,6 +54,7 @@ function getResult(operators, operand) {
 }
 
 document.addEventListener('keydown', function (e) {
+	console.log(e.key)
 	if (!isNaN(Number(e.key))) {
 		display.innerText += e.key;
 		operator += e.key;
@@ -73,6 +66,7 @@ document.addEventListener('keydown', function (e) {
 		operator = '';
 	}
 	if (e.key == '=' || e.key == 'Enter') {
+		console.log(operators, operator)
 		operators.push(Number(operator));
 		getResult(operators, operand);
 		operators = [];
