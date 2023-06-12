@@ -115,3 +115,35 @@ button {
 .calculator .buttons .buttons-operators button:active {
 	border: 2px solid #3581AC;
 }
+
+.history-wrapper {
+	margin: 10px;
+}
+
+.history-wrapper button {
+	padding: 10px;
+	background-color: #1B1E22;
+}
+
+.history-wrapper #history-output {
+	background-color: rgba(62, 64, 67, 0.5);
+	color: #ffffff;
+	padding: 20px;
+	margin-top: 10px;
+	border-radius: 30px;
+	width: 250px;
+	height: 500px;
+	font-size: 20px;
+}
+
+.history-wrapper #history-output p {
+	padding: 3px;
+}
+
+.hidden {
+	opacity: 0;
+}
+
+.visible {
+	opacity: 1;
+}

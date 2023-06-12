@@ -5,6 +5,8 @@ let operator = '';
 let operand = '';
 let operators = [];
 let result;
+let history = [];
+let historyOutput = document.querySelector('#history-output');
 
 buttons.addEventListener('click', calculate);
 
@@ -23,6 +25,7 @@ function calculate(e) {
 	}
 	if (e.target.classList.contains('equals')) {
 		getEquality();
+		writeHistory();
 	}
 	if (e.target.classList.contains('clear')) {
 		clear();
@@ -76,25 +79,38 @@ function getResult(operators, operand) {
 	switch (operand) {
 		case '+':
 			result = operators[0] + operators[1];
+			getHistory();
 			break;
 		case '-':
 			result = operators[0] - operators[1];
+			getHistory();
 			break;
 		case '*':
 			result = operators[0] * operators[1];
+			getHistory();
 			break;
 		case '/':
 			result = operators[0] / operators[1];
+			getHistory();
 			break;
 		case '√':
 			result = Math.sqrt(operators[0]);
+			getHistory();
 			break;
 	}
+
+	display.innerText = result;
+	return result;
+}
+
+function getHistory() {
 	if (!Number.isInteger(result)) {
 		result = Number(result).toFixed(4);
 	}
-	display.innerText = result;
-	return result;
+	let historyItem = display.innerText;
+	historyItem = `${historyItem}=${result}`;
+	history.push(historyItem);
+
 }
 
 function deleteLast() {
@@ -103,6 +119,15 @@ function deleteLast() {
 		operator = display.innerText;
 	} else {
 		operator = operator.slice(0, -1);
+	}
+}
+
+function writeHistory() {
+	historyOutput.textContent = '';
+	for (let elem of history) {
+		let p = document.createElement('p');
+		p.textContent = elem;
+		historyOutput.append(p);
 	}
 }
 
@@ -123,4 +148,10 @@ document.addEventListener('keydown', function (e) {
 		deleteLast();
 	}
 })
+
+document.querySelector('#history').addEventListener('click', function () {
+	historyOutput.classList.toggle('visible')
+})
+
+
 
