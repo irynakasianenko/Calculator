@@ -14,6 +14,12 @@ function calculate(e) {
 	}
 	if (e.target.parentElement.classList.contains('buttons-operators')) {
 		getOperand(e);
+		if (operand == '√') {
+			getResult(operators, operand);
+			operators = [];
+			operator = result;
+			operand = '';
+		}
 	}
 	if (e.target.classList.contains('equals')) {
 		getEquality();
@@ -42,9 +48,11 @@ function getOperand(e) {
 		display.innerText += operand;
 	} else {
 		display.innerText += e.target.value;
-		operand += e.target.value;
-		operators.push(Number(operator));
-		operator = '';
+		operand = e.target.value;
+		if (operator) {
+			operators.push(Number(operator));
+			operator = '';
+		}
 	}
 }
 
@@ -78,9 +86,12 @@ function getResult(operators, operand) {
 		case '/':
 			result = operators[0] / operators[1];
 			break;
+		case '√':
+			result = Math.sqrt(operators[0]);
+			break;
 	}
 	if (!Number.isInteger(result)) {
-		result = result.toFixed(4);
+		result = Number(result).toFixed(4);
 	}
 	display.innerText = result;
 	return result;
@@ -88,7 +99,11 @@ function getResult(operators, operand) {
 
 function deleteLast() {
 	display.innerText = display.innerText.slice(0, -1);
-	operator = display.innerText;
+	if (operators.length == 0) {
+		operator = display.innerText;
+	} else {
+		operator = operator.slice(0, -1);
+	}
 }
 
 document.addEventListener('keydown', function (e) {
